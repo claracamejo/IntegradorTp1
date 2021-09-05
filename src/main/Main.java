@@ -56,9 +56,6 @@ public class Main {
 			 * se cargan los datos en la tabla
 			 */
 			leerCliente(clienteDAO);
-			//insertFacturaTable(facturaDAO);
-			//insertProductoTable(productoDAO);
-			//insertFacturaProductoTable(facturaDAO);
 			
 			ClienteDerby clientes = (ClienteDerby) clienteDAO;
 			List<Cliente> listaC = clientes.getElements();
