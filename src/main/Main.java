@@ -18,6 +18,7 @@ import dao.derby.DerbyManager;
 import dao.derby.FacturaDerby;
 import model.Cliente;
 import model.Factura;
+import model.Factura_Producto;
 import model.Producto;
 
 public class Main {
@@ -74,6 +75,9 @@ public class Main {
 				System.out.println(factura.toString());
 			}
 			
+			leerProductos(productoDAO);
+			leerFacturaProducto(facturaDAO);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -104,24 +108,26 @@ public class Main {
 		}
 	}
 	
-	public static void leerFacturaProducto() throws Exception {
+	public static void leerFacturaProducto(DAO facturaDAO) throws Exception {
 
 		CSVParser parser = CSVFormat.DEFAULT.withHeader()
 				.parse(new FileReader(".\\src\\data\\facturas-productos.csv"));
 		for (CSVRecord row : parser) {
-			//Cliente c = new Cliente(Integer.parseInt(row.get("idCliente")), row.get("nombre"), row.get("email"));
-			//clienteDAO.insert(c);
-
+			Factura_Producto fp = new Factura_Producto(Integer.parseInt(row.get("idFactura")),
+					Integer.parseInt(row.get("idProducto")), Integer.parseInt(row.get("cantidad")));
+			FacturaDerby fd = (FacturaDerby) facturaDAO;
+			fd.insertFacturaProducto(fp);
 		}
 	}
 	
-	public static void leerProductos() throws Exception {
+	public static void leerProductos(DAO productoDAO) throws Exception {
 
 		CSVParser parser = CSVFormat.DEFAULT.withHeader()
 				.parse(new FileReader(".\\src\\data\\productos.csv"));
 		for (CSVRecord row : parser) {
-			//Cliente c = new Cliente(Integer.parseInt(row.get("idCliente")), row.get("nombre"), row.get("email"));
-			//clienteDAO.insert(c);
+			Producto p = new Producto(row.get("nombre"), Float.parseFloat(row.get("valor")));
+			p.setIdProducto(Integer.parseInt(row.get("idProducto")));
+			productoDAO.insert(p);
 
 		}
 	}
