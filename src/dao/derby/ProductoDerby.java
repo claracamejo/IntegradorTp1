@@ -75,6 +75,42 @@ public class ProductoDerby implements DAO<Producto, Integer> {
 			throw new DAOException("Error SQL", e);
 		}
 	}
+	
+	
+	/**
+	 * @return Devuelve el producto que mas recaudo en ventas. Se define "recaudación" como cantidad de productos vendidos multiplicado por su valor.
+	 *  
+	 */
+	public Producto productoQueMasRecaudo () throws Exception {
+		
+		PreparedStatement stat = null;
+		ResultSet rs = null;
+		Producto pre =null;
+		String getAll = "SELECT pro.nombre, fac_pro.idProducto, pro.valor, sum(fac_pro.cantidad * pro.valor) AS recaudacion "
+				+ "FROM factura_producto fac_pro "
+				+ "JOIN producto pro ON (fac_pro.idProducto = pro.idProducto) "
+				+ "GROUP BY fac_pro.idProducto, pro.valor, pro.nombre "
+				+ "ORDER BY recaudacion "
+				+ "DESC FETCH FIRST 1 ROWS ONLY";
 
+		
+		try {
+			stat = conn.prepareStatement(getAll);
+			rs = stat.executeQuery();
+			while (rs.next()) {
+			    pre = new Producto(rs.getInt("idProducto"),rs.getString("nombre"),rs.getFloat("recaudacion"));
+			    // Por la consulta generada sabemos que solamente trae 1 valor.
+			}
+			return pre;
+
+			
+		} catch (SQLException e) {
+			throw new DAOException("Error SQL", e);
+		}
+		
+
+
+	
+	}
 
 }

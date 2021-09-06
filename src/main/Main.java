@@ -16,6 +16,7 @@ import dao.DAOManager;
 import dao.derby.ClienteDerby;
 import dao.derby.DerbyManager;
 import dao.derby.FacturaDerby;
+import dao.derby.ProductoDerby;
 import model.Cliente;
 import model.Factura;
 import model.Factura_Producto;
@@ -68,12 +69,27 @@ public class Main {
 			FacturaDerby facturas = (FacturaDerby) facturaDAO;
 			List<Factura> listaF = facturas.getElements();
 			
-			for (Factura factura : listaF) {
-				System.out.println(factura.toString());
-			}
+			//for (Factura factura : listaF) {
+			//	System.out.println(factura.toString());
+			//}
 			
+					
 			leerProductos(productoDAO);
+			/*
+			ProductoDerby producto = (ProductoDerby) productoDAO;
+			List<Producto> listaP = producto.getElements();
+			for (Producto producto2 : listaP) {
+				System.out.println(producto2.toString());
+			}
+			*/
 			leerFacturaProducto(facturaDAO);
+			
+			
+			ProductoDerby productoDer = (ProductoDerby) productoDAO;
+			Producto pro = productoDer.productoQueMasRecaudo();
+			
+			System.out.println("El valor del producto fue modificado por el total recaudado :"+pro.toString());
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
