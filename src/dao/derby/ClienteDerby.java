@@ -87,5 +87,44 @@ public class ClienteDerby implements DAO<Cliente, Integer> {
 		}
 		return personas;
 	}
+	
+	/**
+	 * @return Devuelve una lista de clientes ordenada por a cual se le facturo mas.
+	 *  
+	 */
+	public List<Cliente> listaClientesOrdenada () throws Exception {
+
+		PreparedStatement stat = null;
+		ResultSet rs = null;
+		List<Cliente> clientesOrdenado = new ArrayList<Cliente>();
+		
+		String getAll = "SELECT fac.idCliente, cli.nombre, cli.email, sum(facProd.cantidad * prod.valor) AS facturacion "
+			      + "FROM factura fac "
+			      + "JOIN factura_producto facProd ON (facProd.idFactura = fac.idFactura) "
+			      + "JOIN producto prod ON (prod.idProducto = facProd.idProducto) "
+			      + "JOIN cliente cli ON (fac.idCliente = cli.idCliente) "
+			      + "GROUP BY fac.idCliente, cli.nombre, cli.email "
+			      + "ORDER BY facturacion DESC";
+
+
+		try {
+			stat = conn.prepareStatement(getAll);
+			rs = stat.executeQuery();
+			while (rs.next()) {
+				float fac = rs.getFloat("facturacion");
+				Cliente cliente = new Cliente(rs.getInt("idCliente"),rs.getString("nombre"),rs.getString("email"));
+				cliente.setFacturacion(fac);
+				clientesOrdenado.add(cliente);
+			}
+			return clientesOrdenado;
+			
+		} catch (SQLException e) {
+			throw new DAOException("Error SQL", e);
+		}
+
+
+
+
+	}
 
 }

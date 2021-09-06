@@ -91,6 +91,16 @@ public class Main {
 			System.out.println("El valor del producto fue modificado por el total recaudado :"+pro.toString());
 			
 			
+			//ejercicio 4
+			
+			ClienteDerby clienteDerby = (ClienteDerby) clienteDAO;
+			List<Cliente> listClientesOrd = clienteDerby.listaClientesOrdenada();
+			
+			for (Cliente cliente : listClientesOrd) {
+				System.out.println(cliente.toString());
+			}
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
