@@ -89,9 +89,10 @@ public class ClienteDerby implements DAO<Cliente, Integer> {
 	}
 	
 	/**
-	 * @return Devuelve una lista de clientes ordenada por a cual se le facturo mas.
-	 *  
-	 */
+	 * Devuelve una lista de clientes ordenada por a cual se le facturo mas.
+	 * Consulta a la db y devuelve el id del cliente, nombre, email y ademas 
+	 * la facturacion
+	 *  @return 	List<Cliente> */
 	public List<Cliente> listaClientesOrdenada () throws Exception {
 
 		PreparedStatement stat = null;

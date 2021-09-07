@@ -91,8 +91,13 @@ public class Main {
 			System.out.println("El valor del producto fue modificado por el total recaudado :"+pro.toString());
 			
 			
-			//ejercicio 4
-			
+			/* Ejercicio 4
+			 * En este inciso se pide imprimir una lista de clientes
+			 * la cual este ordenada de forma descendente por facturación
+			 * llamamos al método que nos devuelve la lista ordenada 
+			 * y la imprimimos en el for posterior.
+			 */
+
 			ClienteDerby clienteDerby = (ClienteDerby) clienteDAO;
 			List<Cliente> listClientesOrd = clienteDerby.listaClientesOrdenada();
 			
