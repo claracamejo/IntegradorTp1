@@ -6,6 +6,7 @@ import model.Producto;
 
 /**
  * Esta interfaz declara los metodos que se deben utilizar en los DAOs de las distintas bases de datos
+ * En esta entrega solo usamos Derby pero se podrian agregar otras. 
  */
 
 public interface DAOManager extends AutoCloseable {

@@ -21,7 +21,7 @@ public class ClienteDerby implements DAO<Cliente, Integer> {
 	private Connection conn;
 	
 	/**
-	 * A partir de la conexion que se creo en DAOManagerDerby se realizan las consultas en los otros metodos
+	 * A partir de la conexion que se creo en DerbyManager se realizan las consultas en los otros metodos
 	 * @param conn
 	 */
 	public ClienteDerby(Connection conn) {

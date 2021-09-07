@@ -16,7 +16,7 @@ public class ProductoDerby implements DAO<Producto, Integer> {
 	private Connection conn;
 
 	/**
-	 * A partir de la conexion que se creo en DAOManagerDerby se realizan las consultas en los otros metodos
+	 * A partir de la conexion que se creo en DerbyManager se realizan las consultas en los otros metodos
 	 * @param conn
 	 */
 	public ProductoDerby(Connection conn) {
@@ -79,13 +79,16 @@ public class ProductoDerby implements DAO<Producto, Integer> {
 	
 	/**
 	 * @return Devuelve el producto que mas recaudo en ventas. Se define "recaudación" como cantidad de productos vendidos multiplicado por su valor.
-	 *  
+	 *  Para mejorar la performance decidimos usar el motor de la base de datos para resolver esta problematica en particular, ya que sino la podriamos
+	 *  haber resuelto desde Java trayendo las dos tablas enteras y agregando logica para llegar al mismo resultado.
 	 */
+	
 	public Producto productoQueMasRecaudo () throws Exception {
 		
 		PreparedStatement stat = null;
 		ResultSet rs = null;
 		Producto pre =null;
+		
 		String getAll = "SELECT pro.nombre, fac_pro.idProducto, pro.valor, sum(fac_pro.cantidad * pro.valor) AS recaudacion "
 				+ "FROM factura_producto fac_pro "
 				+ "JOIN producto pro ON (fac_pro.idProducto = pro.idProducto) "

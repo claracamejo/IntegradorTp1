@@ -60,29 +60,20 @@ public class Main {
 			
 			ClienteDerby clientes = (ClienteDerby) clienteDAO;
 			List<Cliente> listaC = clientes.getElements();
-			
-			//for (Cliente cliente : listaC) {
-			//	System.out.println(cliente.toString());
-			//}
-			
+						
 			leerFacturas(facturaDAO);
 			FacturaDerby facturas = (FacturaDerby) facturaDAO;
 			List<Factura> listaF = facturas.getElements();
 			
-			//for (Factura factura : listaF) {
-			//	System.out.println(factura.toString());
-			//}
-			
-					
 			leerProductos(productoDAO);
-			/*
-			ProductoDerby producto = (ProductoDerby) productoDAO;
-			List<Producto> listaP = producto.getElements();
-			for (Producto producto2 : listaP) {
-				System.out.println(producto2.toString());
-			}
-			*/
+		
 			leerFacturaProducto(facturaDAO);
+			
+			/* Ejercicio 3
+			 * En este inciso se pide imprimir el producto que mas Recaudo
+			 * Para obtener dicho Producto hay que hacer una consulta a la base de datos
+			 * llamando al metodo productoQueMasRecaudo que es propio de la clase Producto
+			 */
 			
 			
 			ProductoDerby productoDer = (ProductoDerby) productoDAO;

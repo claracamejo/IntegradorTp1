@@ -1,5 +1,9 @@
 package dao;
 
+/**
+ * Maneja las exepciones de DAO.
+ */
+
 public class DAOException extends Exception{
 
  static final long serialVersionUID = 1L;

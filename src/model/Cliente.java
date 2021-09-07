@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Objeto base de cliente para utilizar con java
+ * Clase Cliente para utilizar con java, se crean instancias de este objeto por cada cliente de la DB.
  */
 public class Cliente {
 	private int idCliente;

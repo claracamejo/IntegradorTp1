@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Objeto base de la relacion Factura_Producto para utilizar con java
+ * * Clase Factura_Producto para utilizar con java, se crean instancias de este objeto por cada producto facturado. 
  */
 
 public class Factura_Producto {

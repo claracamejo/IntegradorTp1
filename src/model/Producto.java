@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Objeto base de producto para utilizar con java
+ * Clase Producto para utilizar con java, se crean instancias de este objeto por cada producto en la DB.
  */
 
 public class Producto {

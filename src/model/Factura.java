@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Objeto base de factura para utilizar con java
+ * Clase Factura para utilizar con java, se crean instancias de este objeto por cada factura en la DB.
  */
 
 public class Factura {
